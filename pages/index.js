@@ -1,26 +1,24 @@
-import { useEffect } from "react";
+import React from "react";
 import tw from "tailwind-styled-components"
-import mapboxgl from '!mapbox-gl';
+import Map from './components/Map.js'
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDZkdDh1eHIwMWE0M2lydzJqdW1kaWNqIn0.eXwFPx-HHljcYye_Pd9JUA';
 
 export default function Home() {
 
-  useEffect(() => {
-    const map = new mapboxgl.Map({
-    container: "map",
-    style:'mapbox://styles/mapbox/streets-v11',
-    center:[-99.29011, 39.39172],
-    zoom: 3,
-    });
-    });
-
-
-
+  
   return (
     <Wrapper>
-      <Map id= "map"></Map>
-      <ActionItems>Start</ActionItems>
+      <Map/>
+      <ActionItems>
+        <Header>
+        <UberLogo src="https://turbologo.com/articles/wp-content/uploads/2019/12/Uber-logo.png"/>
+        <Profile>
+          <Name>Quick</Name>
+          <UserImage/>
+        </Profile>
+        </Header>
+        
+      </ActionItems>
     </Wrapper>
   )
 }
@@ -32,11 +30,24 @@ export default function Home() {
 
 const Wrapper = tw.div`
 flex flex-col bg-red-300 h-screen
+`
 
-`
-const Map = tw.div`
-bg-red-500 flex-1
-`
 const ActionItems = tw.div`
 bg-blue-500 flex-1 
+`
+
+const Header = tw.div`
+bg-white
+`
+const UberLogo = tw.img`
+h-28
+`
+const Profile = tw.div`
+
+`
+const Name = tw.div`
+
+`
+
+const UserImage = tw.img`
 `
