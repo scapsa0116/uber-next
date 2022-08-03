@@ -2,38 +2,24 @@ import { useEffect } from "react";
 import tw from "tailwind-styled-components"
 import mapboxgl from '!mapbox-gl';
 
-mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
-
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDZkdDh1eHIwMWE0M2lydzJqdW1kaWNqIn0.eXwFPx-HHljcYye_Pd9JUA';
 
 export default function Home() {
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
     const map = new mapboxgl.Map({
-    container: mapContainer.current,
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [lng, lat],
-    zoom: zoom
+    container: "map",
+    style:'mapbox://styles/mapbox/streets-v11',
+    center:[-99.29011, 39.39172],
+    zoom: 3,
     });
     });
-
-
-// const map = new mapboxgl.Map({
-//   container: 'YOUR_CONTAINER_ELEMENT_ID',
-//   style: 'mapbox://styles/mapbox/streets-v11'
-//   center:, Expression expected.
-//   zoom: , Expression expected,
-// });
-
-
-
-
 
 
 
   return (
     <Wrapper>
-      <Map>Map</Map>
+      <Map id= "map"></Map>
       <ActionItems>Start</ActionItems>
     </Wrapper>
   )
