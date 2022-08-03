@@ -16,11 +16,11 @@ export default function Home() {
 // `
 
 const Wrapper = tw.div`
-flex flex-col
+flex flex-col bg-red-300 h-screen
 
 `
 const Map = tw.div`
-bg-red-500
+bg-red-500 
 `
 const ActionItems = tw.div`
 
