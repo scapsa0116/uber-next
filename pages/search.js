@@ -1,12 +1,16 @@
 import React from 'react'
 import tw from "tailwind-styled-components"
+import Link from 'next/link';
+
 
 
 const search = () => {
   return (
     <Wrapper>
       <ButtonContainer>
+      <Link href="/">
         <BackButton src ="https://img.icons8.com/ios-filled/50/000000/long-arrow-left.png"/>
+      </Link>
       </ButtonContainer>
       <InputContainer>
       <FromToIcons>
@@ -22,13 +26,15 @@ const search = () => {
       <PlusIcon src="https://img.icons8.com/external-simple-solid-edt.graphics/50/000000/external-Plus-add-and-remove-simple-solid-edt.graphics.png"/>
       
       </InputContainer>
-      <SavedPlaces>
-        <StarIcon src= ""/>
-      </SavedPlaces>
+      
 
       <SavedPlaces>
-
+      <StarIcon src="https://img.icons8.com/sf-ultralight/25/000000/star.png"/>
+        Saved Places
       </SavedPlaces>
+      <CreateLocationsButton>
+        <LocationText>Confirm Location</LocationText>
+      </CreateLocationsButton>
 
 
 
@@ -55,6 +61,7 @@ w-10 h-10
 `
 
 const SavedPlaces = tw.div`
+flex items-center bg-white px-4 py-2
 
 `
 const FromToIcons = tw.div`
@@ -87,5 +94,13 @@ h-10 w-10 bg-gray-200 rounded-full ml-3
 
 
 const StarIcon = tw.img`
+bg-gray-400 w-10 h-10 p-2 rounded-full mr-2
+`
 
+const CreateLocationsButton = tw.div`
+h-10 px-7 py-4
+`
+
+const LocationText = tw.div`
+flex flex-col  bg-black h-10 text-center text-white py-2 transform hover:scale-105 transition
 `
