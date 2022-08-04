@@ -1,4 +1,3 @@
-import Link from "next/link.js";
 import React from "react";
 import tw from "tailwind-styled-components"
 import Map from './components/Map.js'
@@ -42,7 +41,7 @@ export default function Home() {
         <InputButton>
         Where to ?
         </InputButton>
-        <Search/>
+        
 
 
 
