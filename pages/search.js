@@ -33,7 +33,9 @@ const search = () => {
         Saved Places
       </SavedPlaces>
       <CreateLocationsButton>
+      <Link href="/confirm">
         <LocationText>Confirm Location</LocationText>
+        </Link>
       </CreateLocationsButton>
 
 
@@ -57,7 +59,7 @@ const InputContainer = tw.div`
 bg-white flex items-center px-4 mb-2
 `
 const BackButton = tw.img`
-w-10 h-10
+w-10 h-10 cursor-pointer
 `
 
 const SavedPlaces = tw.div`
@@ -102,5 +104,5 @@ h-10 px-7 py-4
 `
 
 const LocationText = tw.div`
-flex flex-col  bg-black h-10 text-center text-white py-2 transform hover:scale-105 transition
+flex flex-col  bg-black h-10 text-center text-white py-2 transform hover:scale-105 transition cursor-pointer
 `
