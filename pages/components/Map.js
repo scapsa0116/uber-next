@@ -13,30 +13,25 @@ const Map = () => {
         center:[-99.29011, 39.39172],
         zoom: 3,
         });
-
+        
         addToMap(map)
         
+        
         });
+
+        const addToMap = (map) => {
+          const marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
+          .setLngLat([12.65147, 55.608166])
+          .addTo(map);
+
+        }
     
-const addToMap = (map)=>{
-
-  const marker1 = new mapboxgl.Marker()
-         .setLngLat([12.554729, 55.70651])
-        .addTo(map);
-
-}
-
-
-
-  return (
+return (
     <Wrapper id="map">
      
     </Wrapper>
   )
 }
-
-
-
 
 export default Map
 
