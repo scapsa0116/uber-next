@@ -7,9 +7,9 @@ import Map from './components/map'
 const Confirm = () => {
 
   const getCoordinations = () => {
-    location = "Santa Monica"
+    const location = "Santa Monica"
 
-    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json` + 
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?` + 
      new URLSearchParams({ 
       access_token: "pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDZkdDh1eHIwMWE0M2lydzJqdW1kaWNqIn0.eXwFPx-HHljcYye_Pd9JUA"
      }) 
@@ -21,9 +21,9 @@ const Confirm = () => {
   }
 
 
-  useEffect(()=>{
-    getCoordinations();
-  }, [])
+  // useEffect(()=>{
+  //   getCoordinations();
+  // }, [])
 
 
 
