@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import tw from "tailwind-styled-components"
 // import Link from 'next/link';
 import Map from './components/map'
@@ -6,10 +6,13 @@ import Map from './components/map'
 
 const Confirm = () => {
 
-  const getPickupCoordinates = () => {
-    const location = "Santa Monica"
+  const [ pickupCoordinates, setPickupCorrdinates ] = useState()
+  const [ dropoffCoordinates, setDropoffCoordinates ] = useState()
 
-    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?` + 
+  const getPickupCoordinates = () => {
+    const pickup = "Santa Monica"
+
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` + 
      new URLSearchParams({ 
       access_token: "pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDZkdDh1eHIwMWE0M2lydzJqdW1kaWNqIn0.eXwFPx-HHljcYye_Pd9JUA",
       limit: 1
@@ -17,14 +20,16 @@ const Confirm = () => {
      )
     .then(response => response.json())
     .then(data => {
+      console.log("Picup")
       console.log(data.features[0].center)
+      setPickupCorrdinates(data.features[0].center)
     })
   }
 
   const getDropoffCoordinates = () => {
-    const location = "Santa Monica"
+    const dropoff = "Los Angeles"
 
-    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?` + 
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?` + 
      new URLSearchParams({ 
       access_token: "pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDZkdDh1eHIwMWE0M2lydzJqdW1kaWNqIn0.eXwFPx-HHljcYye_Pd9JUA",
       limit: 1
@@ -32,7 +37,9 @@ const Confirm = () => {
      )
     .then(response => response.json())
     .then(data => {
+      console.log("Dropoff")
       console.log(data.features[0].center)
+      setDropoffCoordinates(data.features[0].center)
     })
   }
 
@@ -47,7 +54,10 @@ const Confirm = () => {
 
   return (
     <Wrapper>
-        <Map/>
+        <Map
+        pickupCoordinates = {pickupCoordinates}
+        dropoffCoordinates = {dropoffCoordinates}
+        />
         <RideContainer>
         <RideSelector>
             <TitleText>Coose your ride, or swipe up for more.</TitleText>
@@ -61,7 +71,9 @@ const Confirm = () => {
         </RideSelector>
         <ConfirmButton>
            Confirm UberX
+          
         </ConfirmButton>
+        
 
         </RideContainer>
 
