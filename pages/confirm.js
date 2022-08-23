@@ -20,8 +20,7 @@ const Confirm = () => {
      )
     .then(response => response.json())
     .then(data => {
-      console.log("Picup")
-      console.log(data.features[0].center)
+      
       setPickupCorrdinates(data.features[0].center)
     })
   }
@@ -37,8 +36,7 @@ const Confirm = () => {
      )
     .then(response => response.json())
     .then(data => {
-      console.log("Dropoff")
-      console.log(data.features[0].center)
+      
       setDropoffCoordinates(data.features[0].center)
     })
   }
