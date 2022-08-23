@@ -13,23 +13,33 @@ const Map = (props) => {
         style:'mapbox://styles/mapbox/streets-v11',
         center:[-99.29011, 39.39172],
         zoom: 3,
-        });
-        addToMap(map)        
+        })
+
+        if(props.pickupCoordinates){
+          addToMap(map, props.pickupCoordinates)} 
+          
+          if(props.dropoffCordinates){
+            addToMap(map, props.dropoffCoordinates)}  
+
+          if(props.pickupCoordinates && props.dropoffCoordinates){
+             map.fitBounds([
+              props.pickupCoordinates,
+              props.dropoffCoordinates
+             ],{
+              padding: 60
+             })
+          }  
+
+
         }, [props.pickupCoordinates, props.dropoffCoordinates]);
 
        
 
-        const addToMap = (map) => {
-          const marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
-          .setLngLat([12.65147, 55.608166])
-          .addTo(map);
-
+        const addToMap = (map, coordinates) => {
+          const marker1 = new mapboxgl.Marker().setLngLat(coordinates).addTo(map)
         }
 
-        useEffect(() => {
-          console.log(props.pickupCoordinates, "p")
-          console.log(props.dropoffCoordinates, "d")
-        },[props.pickupCoordinates, props.dropoffCoordinates])
+        
     
 return (
     <Wrapper id="map">
