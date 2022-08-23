@@ -6,11 +6,11 @@ import Map from './components/map'
 
 const Confirm = () => {
 
-  const [ pickupCoordinates, setPickupCorrdinates ] = useState()
-  const [ dropoffCoordinates, setDropoffCoordinates ] = useState()
+  const [ pickupCoordinates, setPickupCorrdinates ] = useState("")
+  const [ dropoffCoordinates, setDropoffCoordinates ] = useState("")
 
   const getPickupCoordinates = () => {
-    const pickup = "Santa Monica"
+    const pickup = "Chicago"
 
     fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` + 
      new URLSearchParams({ 
@@ -44,7 +44,7 @@ const Confirm = () => {
 
   useEffect(()=>{
     getPickupCoordinates();
-    getDropoffCoordinates()
+    getDropoffCoordinates();
   }, [])
 
 
