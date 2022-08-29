@@ -60,16 +60,18 @@ console.log("Dropoff", dropoff)
         />
         <RideContainer>
       
-            <TitleText>Coose your ride, or swipe up for more.</TitleText>
             <RideSelector />
             
 
 
-       
-        <ConfirmButton>
+       <ConfirmButtonContainer>
+       <ConfirmButton>
            Confirm UberX
           
         </ConfirmButton>
+
+       </ConfirmButtonContainer>
+        
         
 
         </RideContainer>
@@ -88,16 +90,16 @@ flex flex-col h-screen
 `
 
 const RideContainer = tw.div`
-flex-1
+flex-1 flex flex-col
 `
-
+const ConfirmButtonContainer = tw.div`
+border-t-2
+`
 
 
 const ConfirmButton = tw.div`
+bg-black text-white my-4 mx-4 py-4 text-center text-xl
+`
 
-`
-const TitleText = tw.div`
-text-black 
-`
 
 // 
