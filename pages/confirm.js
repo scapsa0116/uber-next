@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react'
 import tw from "tailwind-styled-components"
 // import Link from 'next/link';
 import Map from './components/map'
+import { useRouter } from 'next/router'
+import RideSelector from'./components/RideSelector'
 
 
 const Confirm = () => {
+  const router = useRouter()
+const { pickup, dropoff } = router.query
+console.log("Pickup", pickup)
+console.log("Dropoff", dropoff)
 
   const [ pickupCoordinates, setPickupCorrdinates ] = useState("")
   const [ dropoffCoordinates, setDropoffCoordinates ] = useState("")
 
-  const getPickupCoordinates = () => {
-    const pickup = "Chicago"
-
+  const getPickupCoordinates = (pickup) => {
     fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` + 
      new URLSearchParams({ 
       access_token: "pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDZkdDh1eHIwMWE0M2lydzJqdW1kaWNqIn0.eXwFPx-HHljcYye_Pd9JUA",
@@ -25,9 +29,7 @@ const Confirm = () => {
     })
   }
 
-  const getDropoffCoordinates = () => {
-    const dropoff = "Los Angeles"
-
+  const getDropoffCoordinates = (dropoff) => {
     fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?` + 
      new URLSearchParams({ 
       access_token: "pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDZkdDh1eHIwMWE0M2lydzJqdW1kaWNqIn0.eXwFPx-HHljcYye_Pd9JUA",
@@ -43,9 +45,9 @@ const Confirm = () => {
 
 
   useEffect(()=>{
-    getPickupCoordinates();
-    getDropoffCoordinates();
-  }, [])
+    getPickupCoordinates(pickup);
+    getDropoffCoordinates(dropoff);
+  }, [pickup, dropoff])
 
 
 
@@ -57,16 +59,13 @@ const Confirm = () => {
         dropoffCoordinates = {dropoffCoordinates}
         />
         <RideContainer>
-        <RideSelector>
+      
             <TitleText>Coose your ride, or swipe up for more.</TitleText>
-            <Buttons/>
-            <Buttons/>
-            <Buttons/>
-            <Buttons/>
+            <RideSelector />
             
 
 
-        </RideSelector>
+       
         <ConfirmButton>
            Confirm UberX
           
@@ -92,9 +91,7 @@ const RideContainer = tw.div`
 flex-1
 `
 
-const RideSelector = tw.div`
 
-`
 
 const ConfirmButton = tw.div`
 
@@ -103,6 +100,4 @@ const TitleText = tw.div`
 text-black 
 `
 
-const Buttons = tw.div`
-
-`
+// 
