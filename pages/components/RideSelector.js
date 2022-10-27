@@ -4,12 +4,12 @@ import { carList } from '../data/carList'
 
 const RideSelector = ({pickupCoordinates, dropoffCoordinates}) => {
 
-    const [rideDduration, setRideDuration ] = useState(0);
+    const [rideDuration, setRideDuration ] = useState(0);
     
 
 
 useEffect(()=>{
-    fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordinates[0]},${pickupCoordinates[1]};${dropoffCoordinates[0]},${dropoffCoordinates[1]}?access_tokenb= pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDlyYmw4dDIwZXd6M3Vwa3I3c2t5c2tuIn0.kRnr_rRf95jpS4geYWZeLg`)
+ rideDuration = fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordinates[0]},${pickupCoordinates[1]};${dropoffCoordinates[0]},${dropoffCoordinates[1]}?access_tokenb=pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDlyYmw4dDIwZXd6M3Vwa3I3c2t5c2tuIn0.kRnr_rRf95jpS4geYWZeLg`)
     .then(res => res.json())
     .then(data => {
         setRideDuration(data.routes[0].duration / 100)
@@ -30,7 +30,7 @@ useEffect(()=>{
                         <Time>{car.multiplier}</Time>
                         
                     </CarDetails>
-                    <Price>$10</Price>
+                    <Price>{"$" + (rideDuration * car.multiplier).toFixed(2)}</Price>
             </Car>
 
             ))}

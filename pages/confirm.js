@@ -44,7 +44,7 @@ const getDropoffCoordinates = (dropoff) => {
   .then(data => {
       // 🚀 L M
       setDropoffCoordinates(data.features[0].center)
-      console.log("HERE",data.features[0])
+      
   })
 }
 
@@ -58,7 +58,7 @@ useEffect(()=>{
 
 return (
   <Wrapper>
-    <Link href="/">
+    <Link href="/search">
           <BackButton src='https://img.icons8.com/ios-filled/50/000000/left.png' />
         </Link>
       <Map 
