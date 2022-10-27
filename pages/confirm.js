@@ -3,6 +3,8 @@ import tw from 'tailwind-styled-components'
 import Map from './components/Map'
 import { useRouter } from 'next/router'
 import RideSelector from './components/RideSelector'
+import Link from 'next/link';
+
 
 
 
@@ -11,8 +13,8 @@ const router = useRouter()
 const { pickup, dropoff } = router.query
 
 
-const [ pickupCoordinates, setPickupCoordinates ] = useState()
-const [ dropoffCoordinates, setDropoffCoordinates ] = useState()
+const [ pickupCoordinates, setPickupCoordinates ] = useState([0.0])
+const [ dropoffCoordinates, setDropoffCoordinates ] = useState([0,0])
 
 const getPickupCoordinates = (pickup) => {
   // 🔥 Emeric
@@ -34,7 +36,7 @@ const getDropoffCoordinates = (dropoff) => {
   // 🔥 Emeric
   fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?` + 
       new URLSearchParams({
-          access_token: 'pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDlyYmw4dDIwZXd6M3Vwa3I3c2t5c2tuIn0.kRnr_rRf95jpS4geYWZeLg',
+          access_token:'pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDlyYmw4dDIwZXd6M3Vwa3I3c2t5c2tuIn0.kRnr_rRf95jpS4geYWZeLg',
           limit: 1
       })
   )
@@ -56,13 +58,18 @@ useEffect(()=>{
 
 return (
   <Wrapper>
+    <Link href="/">
+          <BackButton src='https://img.icons8.com/ios-filled/50/000000/left.png' />
+        </Link>
       <Map 
           pickupCoordinates={pickupCoordinates}
           dropoffCoordinates={dropoffCoordinates}
       />
       {/* Benjamin */}
       <RideContainer>
-          <RideSelector />
+          <RideSelector 
+          pickupCoordinates={pickupCoordinates}
+          dropoffCoordinates={dropoffCoordinates}/>
           <ConfirmButtonContainer>
               <ConfirmButton>
                   Confirm UberX
@@ -90,6 +97,6 @@ border-t-2
 const ConfirmButton = tw.div`
 bg-black text-white my-4 mx-4 py-4 text-center text-xl
 `
-
-
-// 
+const BackButton = tw.img`
+h-4 w-4 cursor-pointer
+`
