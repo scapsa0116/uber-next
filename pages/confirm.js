@@ -1,86 +1,76 @@
-import React, { useEffect, useState } from 'react'
-import tw from "tailwind-styled-components"
-// import Link from 'next/link';
-import Map from './components/map'
+import { useEffect, useState } from 'react'
+import tw from 'tailwind-styled-components'
+import Map from './components/Map'
 import { useRouter } from 'next/router'
-import RideSelector from'./components/RideSelector'
+import RideSelector from './components/RideSelector'
+
 
 
 const Confirm = () => {
-  const router = useRouter()
+const router = useRouter()
 const { pickup, dropoff } = router.query
-console.log("Pickup", pickup)
-console.log("Dropoff", dropoff)
-
-  const [ pickupCoordinates, setPickupCorrdinates ] = useState("")
-  const [ dropoffCoordinates, setDropoffCoordinates ] = useState("")
-
-  const getPickupCoordinates = (pickup) => {
-    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` + 
-     new URLSearchParams({ 
-      access_token: "pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDZkdDh1eHIwMWE0M2lydzJqdW1kaWNqIn0.eXwFPx-HHljcYye_Pd9JUA",
-      limit: 1
-     }) 
-     )
-    .then(response => response.json())
-    .then(data => {
-      
-      setPickupCorrdinates(data.features[0].center)
-    })
-  }
-
-  const getDropoffCoordinates = (dropoff) => {
-    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?` + 
-     new URLSearchParams({ 
-      access_token: "pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDZkdDh1eHIwMWE0M2lydzJqdW1kaWNqIn0.eXwFPx-HHljcYye_Pd9JUA",
-      limit: 1
-     }) 
-     )
-    .then(response => response.json())
-    .then(data => {
-      
-      setDropoffCoordinates(data.features[0].center)
-    })
-  }
 
 
-  useEffect(()=>{
-    getPickupCoordinates(pickup);
-    getDropoffCoordinates(dropoff);
-  }, [pickup, dropoff])
+const [ pickupCoordinates, setPickupCoordinates ] = useState()
+const [ dropoffCoordinates, setDropoffCoordinates ] = useState()
 
-
-
-
-  return (
-    <Wrapper>
-        <Map
-        pickupCoordinates = {pickupCoordinates}
-        dropoffCoordinates = {dropoffCoordinates}
-        />
-        <RideContainer>
-      
-            <RideSelector />
-            
-
-
-       <ConfirmButtonContainer>
-       <ConfirmButton>
-           Confirm UberX
-          
-        </ConfirmButton>
-
-       </ConfirmButtonContainer>
-        
-        
-
-        </RideContainer>
-
-        
-        
-        
-        </Wrapper>
+const getPickupCoordinates = (pickup) => {
+  // 🔥 Emeric
+  fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` + 
+      new URLSearchParams({
+          access_token: "pk.eyJ1IjoiZHJha29zaSIsImEiOiJja2x1YW9jdWswOHcyMnVvZXQ1aTVqcHBnIn0.G0SLu_zwAEU9_q8FIkHeaQ",
+          limit: 1
+      })
   )
+  .then(response => response.json())
+  .then(data => {
+      // 🚀 L M
+      setPickupCoordinates(data.features[0].center);
+  })
+}
+
+
+const getDropoffCoordinates = (dropoff) => {
+  // 🔥 Emeric
+  fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?` + 
+      new URLSearchParams({
+          access_token: "pk.eyJ1IjoiZHJha29zaSIsImEiOiJja2x1YW9jdWswOHcyMnVvZXQ1aTVqcHBnIn0.G0SLu_zwAEU9_q8FIkHeaQ",
+          limit: 1
+      })
+  )
+  .then(response => response.json())
+  .then(data => {
+      // 🚀 L M
+      setDropoffCoordinates(data.features[0].center)
+      console.log("HERE",data.features[0])
+  })
+}
+
+useEffect(()=>{
+  getPickupCoordinates(pickup);
+  getDropoffCoordinates(dropoff);
+}, [pickup, dropoff])
+
+
+
+
+return (
+  <Wrapper>
+      <Map 
+          pickupCoordinates={pickupCoordinates}
+          dropoffCoordinates={dropoffCoordinates}
+      />
+      {/* Benjamin */}
+      <RideContainer>
+          <RideSelector />
+          <ConfirmButtonContainer>
+              <ConfirmButton>
+                  Confirm UberX
+              </ConfirmButton>
+          </ConfirmButtonContainer>
+      </RideContainer>
+  </Wrapper>
+)
 }
 
 export default Confirm

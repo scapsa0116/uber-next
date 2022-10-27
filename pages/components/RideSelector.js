@@ -26,7 +26,7 @@ const RideSelector = () => {
                     <Price>$30</Price>
             </Car>
             <Car>
-                <CarImage src="https://i.ibb.co/cyvcpfF/uberx.png "/>
+                <CarImage src="https://img.icons8.com/ios-glyphs/30/000000/hennessey-venom.png"/>
                     <CarDetails>
                         <Service>Black</Service>
                         <Time>5 min awai</Time>
