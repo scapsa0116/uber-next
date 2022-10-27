@@ -18,7 +18,7 @@ const getPickupCoordinates = (pickup) => {
   // 🔥 Emeric
   fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` + 
       new URLSearchParams({
-          access_token: "pk.eyJ1IjoiZHJha29zaSIsImEiOiJja2x1YW9jdWswOHcyMnVvZXQ1aTVqcHBnIn0.G0SLu_zwAEU9_q8FIkHeaQ",
+          access_token:'pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDlyYmw4dDIwZXd6M3Vwa3I3c2t5c2tuIn0.kRnr_rRf95jpS4geYWZeLg',
           limit: 1
       })
   )
@@ -34,7 +34,7 @@ const getDropoffCoordinates = (dropoff) => {
   // 🔥 Emeric
   fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?` + 
       new URLSearchParams({
-          access_token: "pk.eyJ1IjoiZHJha29zaSIsImEiOiJja2x1YW9jdWswOHcyMnVvZXQ1aTVqcHBnIn0.G0SLu_zwAEU9_q8FIkHeaQ",
+          access_token: 'pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDlyYmw4dDIwZXd6M3Vwa3I3c2t5c2tuIn0.kRnr_rRf95jpS4geYWZeLg',
           limit: 1
       })
   )
