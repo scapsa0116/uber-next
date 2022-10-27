@@ -8,12 +8,12 @@ const RideSelector = () => {
         
         <Title>Choose the ride, or swipe up for more</Title>
         <CarList>
-            {carList.map((car) => (
-                <Car>
-                <CarImage src="https://i.ibb.co/cyvcpfF/uberx.png "/>
+            {carList.map((car, index) => (
+                <Car key = {index}>
+                <CarImage src={car.imgUrl}/>
                     <CarDetails>
-                        <Service>Uber X</Service>
-                        <Time>5 min awai</Time>
+                        <Service>{car.service}</Service>
+                        <Time>{car.multiplier}</Time>
                         
                     </CarDetails>
                     <Price>$10</Price>
@@ -21,25 +21,7 @@ const RideSelector = () => {
 
             ))}
             
-            {/* <Car>
-                <CarImage src="https://i.ibb.co/cyvcpfF/uberx.png "/>
-                    <CarDetails>
-                        <Service>Uber XL</Service>
-                        <Time>5 min awai</Time>
-                        
-                    </CarDetails>
-                    <Price>$30</Price>
-            </Car>
-            <Car>
-                <CarImage src="https://img.icons8.com/ios-glyphs/30/000000/hennessey-venom.png"/>
-                    <CarDetails>
-                        <Service>Black</Service>
-                        <Time>5 min awai</Time>
-                        
-                    </CarDetails>
-                    <Price>$100</Price>
-            </Car> */}
-
+            
         </CarList>
         
   </Wrapper>
@@ -48,10 +30,7 @@ const RideSelector = () => {
 
 export default RideSelector;
 
-const Wrapper = tw.div`
-flex-1 bg-white
 
-`
 
 const Title = tw.div` 
 text-gray-500 text-center text-xs py-2 border-b
@@ -59,11 +38,11 @@ text-gray-500 text-center text-xs py-2 border-b
 `
 
 const Car = tw.div` 
-flex p-4
+flex p-4 items-center
 `
 
 const CarList = tw.div`
-
+overflow-y-scroll 
 `
 
 const CarImage = tw.img`
@@ -84,4 +63,9 @@ text-xs text-blue-500
 
 const Price = tw.div`
 text-xs
+`
+
+const Wrapper = tw.div`
+flex-1 bg-white overflow-y-scroll flex flex-col
+
 `
