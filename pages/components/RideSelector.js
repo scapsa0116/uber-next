@@ -2,27 +2,20 @@ import { useEffect, useState } from 'react'
 import tw from "tailwind-styled-components"
 import { carList } from '../data/carList'
 
-const RideSelector = () => {
+const RideSelector = ({pickupCoordinates, dropoffCoordinates}) => {
 
-    const [duration, setDuration ]= useState(0);
+    const [rideDduration, setRideDuration ] = useState(0);
     
-const getDirections = (pickUpCoordinates, dropoffCoordinates) => {
-    fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${pickUpCoordinates[0]},${pickUpCoordinates[1]};${dropoffCoordinates[0]},${dropoffCoordinates[1]}?access_tokenb= pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDlyYmw4dDIwZXd6M3Vwa3I3c2t5c2tuIn0.kRnr_rRf95jpS4geYWZeLg`
-    )
-    .then((response)=>{
-        return response.json();
-    }).then(data => {
-        // console.log
-        setDuration(data.routes[0].duration)
-    })
-}
+
 
 useEffect(()=>{
-    if(props.pickUpCoordinates && props.dropoffCoordinates){
-        getDirections(props.pickUpCoordinates, props.dropoffCoordinates)
-    }
+    fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordinates[0]},${pickupCoordinates[1]};${dropoffCoordinates[0]},${dropoffCoordinates[1]}?access_tokenb= pk.eyJ1Ijoic2NhcHNhMDExNiIsImEiOiJjbDlyYmw4dDIwZXd6M3Vwa3I3c2t5c2tuIn0.kRnr_rRf95jpS4geYWZeLg`)
+    .then(res => res.json())
+    .then(data => {
+        setRideDuration(data.routes[0].duration / 100)
+    })
 
-}, [props.pickUpCoordinates, props.dropoffCoordinates])
+}, [pickupCoordinates, dropoffCoordinates])
 
   return (
     <Wrapper>
