@@ -1,5 +1,6 @@
 import React from 'react'
 import tw from "tailwind-styled-components"
+import { carList } from '../data/carList'
 
 const RideSelector = () => {
   return (
@@ -7,7 +8,8 @@ const RideSelector = () => {
         
         <Title>Choose the ride, or swipe up for more</Title>
         <CarList>
-            <Car>
+            {carList.map((car) => (
+                <Car>
                 <CarImage src="https://i.ibb.co/cyvcpfF/uberx.png "/>
                     <CarDetails>
                         <Service>Uber X</Service>
@@ -16,7 +18,10 @@ const RideSelector = () => {
                     </CarDetails>
                     <Price>$10</Price>
             </Car>
-            <Car>
+
+            ))}
+            
+            {/* <Car>
                 <CarImage src="https://i.ibb.co/cyvcpfF/uberx.png "/>
                     <CarDetails>
                         <Service>Uber XL</Service>
@@ -33,7 +38,7 @@ const RideSelector = () => {
                         
                     </CarDetails>
                     <Price>$100</Price>
-            </Car>
+            </Car> */}
 
         </CarList>
         
